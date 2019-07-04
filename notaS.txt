@@ -6,6 +6,12 @@ other: https://javebratt.com/crud-ionic-firestore/
 https://firebase.google.com/docs/auth/web/password-auth#before_you_begin
 https://github.com/firebase/quickstart-js/blob/master/auth/README.md
 
+https://firebase.google.com/docs/auth/?authuser=0
+
+Ionic 4 Firebase Authentication Tutorial
+https://blog.jamibot.com/ionic-4-firebase-authentication
+
+
 Create and initialize your app 
 
 $ npm install -g ionic@latest
