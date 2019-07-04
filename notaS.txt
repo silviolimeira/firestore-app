@@ -1,8 +1,9 @@
 
 Ionic 4 CRUD Operations Using Firebase and Firestore Database Tutorial in Ionic 4 with Angular 7
 https://www.freakyjolly.com/ionic-4-crud-operations-using-firebase-and-firestore-database-tutorial-in-ionic-4-with-angular-7/
+other: https://javebratt.com/crud-ionic-firestore/
 
-
+https://firebase.google.com/docs/auth/web/password-auth#before_you_begin
 
 Create and initialize your app 
 
