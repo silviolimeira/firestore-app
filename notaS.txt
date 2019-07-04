@@ -17,4 +17,5 @@ $ npm install --save firebase @angular/fire
 Create a Service with Firestore CRUD methods
 $ ionic g service services/crud --flat
 
+$ ionic serve --open --browser chrome
 
