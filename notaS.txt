@@ -1,0 +1,16 @@
+
+Ionic 4 CRUD Operations Using Firebase and Firestore Database Tutorial in Ionic 4 with Angular 7
+https://www.freakyjolly.com/ionic-4-crud-operations-using-firebase-and-firestore-database-tutorial-in-ionic-4-with-angular-7/
+
+
+
+Create and initialize your app 
+
+$ npm install -g ionic@latest
+
+$ ionic start firestore-example blank
+$ cd firestore-example
+
+# Istall Firebase in Application
+$ npm install --save firebase @angular/fire
+
