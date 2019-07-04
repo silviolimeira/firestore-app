@@ -4,6 +4,7 @@ https://www.freakyjolly.com/ionic-4-crud-operations-using-firebase-and-firestore
 other: https://javebratt.com/crud-ionic-firestore/
 
 https://firebase.google.com/docs/auth/web/password-auth#before_you_begin
+https://github.com/firebase/quickstart-js/blob/master/auth/README.md
 
 Create and initialize your app 
 
