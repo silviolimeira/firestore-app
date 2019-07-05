@@ -41,3 +41,10 @@ Para gerar um arquivo de chave privada da conta de serviço, siga estas etapas:
 https://firebase.google.com/docs/admin/setup/
 
 https://firebase.google.com/docs/samples
+
+
+G Suite
+https://script.google.com/u/1/home/start
+
+Groups Service
+https://developers.google.com/apps-script/reference/groups/
