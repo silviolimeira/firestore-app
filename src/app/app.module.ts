@@ -9,10 +9,28 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { environment } from "../environments/environment";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
+
+import { FirebaseUIModule, firebase, firebaseui } from "firebaseui-angular";
+
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import {
+  AngularFirestore,
+  AngularFirestoreModule
+} from "@angular/fire/firestore";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: "popup",
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+    // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+  ],
+  tosUrl: "/terms",
+  privacyPolicyUrl: "/privacy",
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,8 +41,12 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
     AppRoutingModule,
 
     AngularFireModule.initializeApp(environment.firebase),
+
     AngularFirestoreModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
   ],
   providers: [
     StatusBar,

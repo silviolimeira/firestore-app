@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 import { CrudService } from "./../services/crud.service";
+import { AngularFireAuth } from "@angular/fire/auth";
 
 @Component({
   selector: "app-home",
@@ -13,7 +14,35 @@ export class HomePage implements OnInit {
   studentAge: number;
   studentAddress: string;
 
-  constructor(private crudService: CrudService) {}
+  // constructor(private crudService: CrudService) {}
+
+  hasVerifiedEmail = true;
+  sentTimestamp;
+
+  constructor(
+    public afAuth: AngularFireAuth,
+    private crudService: CrudService // private crudService: CrudService
+  ) {
+    this.afAuth.authState.subscribe(user => {
+      if (user)
+        this.hasVerifiedEmail = this.afAuth.auth.currentUser.emailVerified;
+    });
+  }
+
+  signOut() {
+    this.afAuth.auth.signOut().then(() => {
+      location.reload();
+    });
+  }
+
+  sendVerificationEmail() {
+    this.afAuth.auth.currentUser.sendEmailVerification();
+    this.sentTimestamp = new Date();
+  }
+
+  reload() {
+    window.location.reload();
+  }
 
   ngOnInit() {
     this.crudService.read_Students().subscribe(data => {
