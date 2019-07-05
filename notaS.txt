@@ -21,6 +21,8 @@ $ cd firestore-example
 
 # Istall Firebase in Application
 $ npm install --save firebase @angular/fire
+$ npm install firebase firebaseui @angular/fire firebaseui-angular --save
+
 
 Create a Service with Firestore CRUD methods
 $ ionic g service services/crud --flat
@@ -51,3 +53,31 @@ https://developers.google.com/apps-script/reference/groups/
 
 Examples:
 https://github.com/gsuitedevs/node-samples
+
+
+========================
+Build:
+========================
+set ANDROID_SDK_ROOT=D:\Users\silvio.limeira\AppData\Local\Android\Sdk
+set ANDROID_HOME=D:\Users\silvio.limeira\AppData\Local\Android\Sdk
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_181\bin
+
+export ANDROID_SDK_ROOT=/d/Users/silvio.limeira/AppData/Local/Android/Sdk
+export ANDROID_HOME=/d/Users/silvio.limeira/AppData/Local/Android/Sdk
+export JAVA_HOME=/c/Program\ Files/Java/jdk1.8.0_181
+
+echo $ANDROID_SDK_ROOT
+echo $ANDROID_HOME
+echo $JAVA_HOME
+
+Add support for android or IOS:
+$ ionic cordova platform add android --save
+$ ionic cordova platform add ios --save
+
+build the apk
+$ ionic cordova build android --prod --release
+
+run/install apk in debug mode
+$ ionic cordova build android
+$ ionic cordova run android --device
+========================
