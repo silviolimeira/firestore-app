@@ -19,7 +19,7 @@
         >Sign Out</ion-button
       >
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="afAuth.auth.currentUser">
       <ion-col>
         <ion-item>
           <ion-input
@@ -45,7 +45,7 @@
         </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="afAuth.auth.currentUser">
       <ion-col text-center>
         <ion-button
           (click)="CreateRecord()"
@@ -57,9 +57,13 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
   <ion-card *ngFor="let item of students">
-    <span *ngIf="!item.isEdit; else elseBlock">
+    <span
+      *ngIf="
+        !item.isEdit && afAuth.auth.currentUser;
+        else elseBlock && afAuth.auth.currentUser
+      "
+    >
       <ion-card-header>
         <ion-card-title>{{ item.Name }} of {{ item.Age }} years</ion-card-title>
         <ion-card-subtitle>From: {{ item.Address }}</ion-card-subtitle>
