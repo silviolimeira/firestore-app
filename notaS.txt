@@ -34,3 +34,10 @@ https://blog.jamibot.com/ionic-4-firebase-authentication
 https://www.npmjs.com/package/firebaseui-angular
 
 
+https://firebase.google.com/docs/auth/admin
+https://firebase.google.com/docs/auth/admin/manage-users
+
+Para gerar um arquivo de chave privada da conta de serviço, siga estas etapas:
+https://firebase.google.com/docs/admin/setup/
+
+https://firebase.google.com/docs/samples
