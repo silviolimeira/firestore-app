@@ -16,8 +16,6 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
     FormsModule,
     IonicModule,
     FirebaseUIModule,
-    AngularFirestoreModule,
-    AngularFireDatabaseModule,
     RouterModule.forChild([
       {
         path: "",

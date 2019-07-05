@@ -31,3 +31,6 @@ Ionic 4 Firebase Authentication Tutorial
 https://blog.jamibot.com/ionic-4-firebase-authentication
 
 
+https://www.npmjs.com/package/firebaseui-angular
+
+
