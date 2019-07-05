@@ -75,18 +75,76 @@ defaultDatabase = admin.database();
 //     console.log("Error creating new user:", error);
 //   });
 
-// Create user with id
-admin
-  .auth()
-  .createUser({
-    uid: "some-uid",
-    email: "user1@example.com",
-    phoneNumber: "+12234567890"
-  })
-  .then(function(userRecord) {
-    // See the UserRecord reference doc for the contents of userRecord.
-    console.log("Successfully created new user:", userRecord.uid);
-  })
-  .catch(function(error) {
-    console.log("Error creating new user:", error);
-  });
+// // Create user with id
+// admin
+//   .auth()
+//   .createUser({
+//     uid: "some-uid",
+//     email: "user1@example.com",
+//     phoneNumber: "+12234567890"
+//   })
+//   .then(function(userRecord) {
+//     // See the UserRecord reference doc for the contents of userRecord.
+//     console.log("Successfully created new user:", userRecord.uid);
+//   })
+//   .catch(function(error) {
+//     console.log("Error creating new user:", error);
+//   });
+
+// // Atualizar usuário
+// // https://firebase.google.com/docs/auth/admin/manage-users/
+// admin
+//   .auth()
+//   .updateUser(uid, {
+//     email: "modifiedUser@example.com",
+//     phoneNumber: "+11234567890",
+//     emailVerified: true,
+//     password: "newPassword",
+//     displayName: "Jane Doe",
+//     photoURL: "http://www.example.com/12345678/photo.png",
+//     disabled: true
+//   })
+//   .then(function(userRecord) {
+//     // See the UserRecord reference doc for the contents of userRecord.
+//     console.log("Successfully updated user", userRecord.toJSON());
+//   })
+//   .catch(function(error) {
+//     console.log("Error updating user:", error);
+//   });
+
+// // Excluir usuário
+// // https://firebase.google.com/docs/auth/admin/manage-users/#delete_a_user
+// admin
+//   .auth()
+//   .deleteUser(uid)
+//   .then(function() {
+//     console.log("Successfully deleted user");
+//   })
+//   .catch(function(error) {
+//     console.log("Error deleting user:", error);
+//   });
+
+// Listar todos os usuários
+//   O SDK Admin do Firebase permite recuperar toda a lista de usuários em lotes:
+
+function listAllUsers(nextPageToken) {
+  // List batch of users, 1000 at a time.
+  admin
+    .auth()
+    .listUsers(1000, nextPageToken)
+    .then(function(listUsersResult) {
+      listUsersResult.users.forEach(function(userRecord) {
+        console.log("user", userRecord.toJSON());
+      });
+      if (listUsersResult.pageToken) {
+        // List next batch of users.
+        listAllUsers(listUsersResult.pageToken);
+      }
+    })
+    .catch(function(error) {
+      console.log("Error listing users:", error);
+    });
+}
+// Start listing users from the beginning, 1000 at a time.
+console.log("##### listAllUsers #####");
+listAllUsers();
