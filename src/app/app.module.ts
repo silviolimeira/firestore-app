@@ -45,7 +45,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
 
     AngularFireModule.initializeApp(environment.firebase),
 
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireDatabaseModule,
 
     AngularFireAuthModule,

@@ -58,6 +58,11 @@ https://github.com/gsuitedevs/node-samples
 4. Querying Collectios in AngularFirestore
 https://github.com/angular/angularfire2/blob/master/docs/firestore/querying-collections.md
 
+Enable Offline Data in AngularFirestore
+https://github.com/angular/angularfire2/blob/master/docs/firestore/offline-data.md
+
+https://firebase.google.com/docs/firestore/manage-data/enable-offline
+
 
 
 ========================
