@@ -1,0 +1,26 @@
+<div *ngIf="students$ | async; let students; else: loading">
+  <ul>
+    <li *ngFor="let student of students">
+      {{ student.Name }}
+    </li>
+  </ul>
+  <div *ngIf="students.length === 0">No results, try clearing filters</div>
+</div>
+<ng-template #loading>Loading&hellip;</ng-template>
+<div>
+  <h4>Filter by address</h4>
+  <button (click)="filterByAddress('cc')">cc</button>
+  <button
+    (click)="filterByAddress(null)"
+    *ngIf="this.addressFilter$.getValue()"
+  >
+    <em>clear filter</em>
+  </button>
+</div>
+<div>
+  <h4>Filter by age</h4>
+  <button (click)="filterByAge('33')">33</button>
+  <button (click)="filterByAge(null)" *ngIf="this.ageFilter$.getValue()">
+    <em>clear filter</em>
+  </button>
+</div>

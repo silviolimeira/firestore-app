@@ -9,6 +9,8 @@ import { FirebaseUIModule } from "firebaseui-angular";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { StudentComponent } from "../components/student.component";
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
     FormsModule,
     IonicModule,
     FirebaseUIModule,
+    ComponentsModule,
     RouterModule.forChild([
       {
         path: "",

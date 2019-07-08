@@ -55,6 +55,11 @@ Examples:
 https://github.com/gsuitedevs/node-samples
 
 
+4. Querying Collectios in AngularFirestore
+https://github.com/angular/angularfire2/blob/master/docs/firestore/querying-collections.md
+
+
+
 ========================
 Build:
 ========================
