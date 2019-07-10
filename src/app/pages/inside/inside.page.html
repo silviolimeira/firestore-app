@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>inside</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid fixed>
+    <ion-row>
+      <h1 *ngIf="afAuth.auth.currentUser">
+        Welcome {{ afAuth.auth.currentUser.displayName }} Id:
+        {{ afAuth.auth.currentUser.uid }}!
+      </h1>
+
+      <ion-button *ngIf="afAuth.auth.currentUser" (click)="signOut()"
+        >Sign Out</ion-button
+      >
+    </ion-row>
+  </ion-grid>
+</ion-content>

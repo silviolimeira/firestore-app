@@ -26,6 +26,7 @@ export class HomePage implements OnInit {
     this.afAuth.authState.subscribe(user => {
       if (user)
         this.hasVerifiedEmail = this.afAuth.auth.currentUser.emailVerified;
+      console.log("id_token: ", this.afAuth.auth.currentUser.getIdToken());
     });
   }
 
