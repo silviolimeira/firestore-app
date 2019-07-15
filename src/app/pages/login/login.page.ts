@@ -19,6 +19,8 @@ export class LoginPage implements OnInit {
   ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
+        console.log("user: ", user);
+
         this.authService.login();
       }
     });

@@ -9,6 +9,8 @@ export class AuthGuardService {
 
   canActivate(): boolean {
     // return this.afAuth.isAuthenticated();
-    return true;
+    console.log("canActivate");
+    if (this.afAuth.user) return true;
+    else return false;
   }
 }

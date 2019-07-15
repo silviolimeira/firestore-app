@@ -10,6 +10,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 })
 export class AuthService {
   authenticationState = new BehaviorSubject(false);
+  perfil: string[] = ["home"];
   // token = null;
 
   constructor(private plt: Platform, public afAuth: AngularFireAuth) {
