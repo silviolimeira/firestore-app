@@ -7,17 +7,25 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AuthService } from "./services/auth.service";
 import { Router } from "@angular/router";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { Observable, BehaviorSubject, combineLatest, Subject } from "rxjs";
+import {
+  Observable,
+  BehaviorSubject,
+  combineLatest,
+  Subject,
+  Subscription
+} from "rxjs";
 import { switchMap, take } from "rxjs/operators";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { stringify } from "@angular/compiler/src/util";
+import { RouterService } from "./services/router.service";
 
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html"
 })
 export class AppComponent {
-  private subject = new Subject<any>();
+  // private subject = new Subject<any>();
+  routes: any[] = [];
+  subscription: Subscription;
 
   constructor(
     private platform: Platform,
@@ -27,26 +35,10 @@ export class AppComponent {
     private authService: AuthService,
     private router: Router,
     private firestore: AngularFirestore,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private routeService: RouterService
   ) {
     this.initializeApp();
-  }
-
-  sendMessage(message: string) {
-    if (message === "Teacher") this.router.navigate(["home"]);
-    else this.router.navigate(["inside"]);
-    // this.router.navigate([message]);
-    this.authService.perfil = [message];
-    console.log("message: ", message);
-    this.subject.next({ text: message });
-  }
-
-  clearMessages() {
-    this.subject.next();
-  }
-
-  getMessage(): Observable<any> {
-    return this.subject.asObservable();
   }
 
   initializeApp() {
@@ -56,16 +48,34 @@ export class AppComponent {
 
       this.authService.authenticationState.subscribe(state => {
         if (state) {
-          this.foo();
-          // this.router.navigate(["inside"]);
+          this.getProfile();
         } else {
           this.router.navigate(["login"]);
+        }
+      });
+
+      this.subscription = this.routeService.getRoute().subscribe(route => {
+        if (route) {
+          this.routes.push(route);
+          console.log("route: ", route);
+          if (route.text === "Teacher") {
+            console.log("navigate home");
+            this.router.navigate(["home"]);
+          } else this.router.navigate(["inside"]);
+        } else {
+          // clear routes when enpty message received
+          this.routes = [];
         }
       });
     });
   }
 
-  async foo() {
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+  }
+
+  async getProfile() {
     var students$: Observable<any[]>;
     var studentFilter$: BehaviorSubject<string | null>;
 
@@ -87,25 +97,13 @@ export class AppComponent {
       )
     );
 
-    // let profile = students$[0].profile;
     console.log(this.afAuth.auth.currentUser.uid);
     studentFilter$.next(this.afAuth.auth.currentUser.uid);
     let profile;
     students$.pipe(take(1)).forEach(doc => {
       console.log(doc[0].profile);
       profile = doc[0].profile;
-      this.sendMessage(profile);
+      this.routeService.sendRoute(profile);
     });
-
-    // this.clearMessages();
-    // this.getMessage();
   }
-
-  // filterByAddress(address: string | null) {
-  //   console.log("address: ", address);
-  //   this.addressFilter$.next(address);
-  // }
-  // filterByAge(age: string | null) {
-  //   this.ageFilter$.next(age);
-  // }
 }

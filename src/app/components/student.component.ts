@@ -3,6 +3,8 @@ import { Component, OnInit } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Observable, BehaviorSubject, combineLatest } from "rxjs";
 import { switchMap } from "rxjs/operators";
+import { RouterService } from "../services/router.service";
+import { Router } from '@angular/router';
 
 export interface Student {
   Address: String;
@@ -20,7 +22,10 @@ export class StudentComponent implements OnInit {
   addressFilter$: BehaviorSubject<string | null>;
   ageFilter$: BehaviorSubject<string | null>;
 
-  constructor(afs: AngularFirestore) {
+  constructor(
+    afs: AngularFirestore,
+    private router: Router,
+  ) {
     this.addressFilter$ = new BehaviorSubject(null);
     this.ageFilter$ = new BehaviorSubject(null);
     this.students$ = combineLatest(this.addressFilter$, this.ageFilter$).pipe(
@@ -51,4 +56,10 @@ export class StudentComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  goToInside() {
+    console.log("goToInside()");
+    // this.routerService.sendRoute("student");
+    this.router.navigate(["inside"]);
+  }
 }
